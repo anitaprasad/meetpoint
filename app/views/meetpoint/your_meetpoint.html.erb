@@ -1,0 +1,63 @@
+<h1>Meet here:</h1>
+
+<p>Address 1<%= @address_1 %>:
+  Longitude 1 <%= @longitude_1 %>
+  Latitude 1 <%= @latitude_1 %>
+</p>
+
+<p>Address 2<%= @address_2 %>:
+  Longitude 2 <%= @longitude_2 %>
+  Latitude 2 <%= @latitude_2 %>
+</p>
+
+<p>Here's the midpoint <%= @address_mid %>:
+  Mid Longitude <%= @mid_longitude %>
+  Mid Latitude <%= @mid_latitude %>
+  Yelp <%= @yelp_name %>
+</p>
+<p>
+  <% @yelp_biz.each do |biz| %>
+  <img src = '<%=biz.image_url %>'>
+  <a href = '<%=biz.url %>'><%=biz.name %></a>
+  <%=biz.rating %>
+  <%=biz.snippet_text %>
+  <%=biz.location.address %>
+</p>
+<% end %>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmhfioWUGvP8eeIUFL_12feamgDCCt9E&callback=initMap">
+    </script>
