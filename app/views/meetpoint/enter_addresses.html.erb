@@ -1,27 +1,31 @@
-<h1>MeetPoint</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
 
-<%if @missing_address_1 and @missing_address_2%>
-<p> Missing Address 1 and 2! </p>
-<%elsif @missing_address_1%>
-<p> Missing Address 1! </p>
-<%elsif @missing_address_2%>
-<p> Missing Address 2! </p>
-<%end%>
+      <h1>MeetPoint</h1>
 
-<form action="/your_meetpoint">
-  <div>
-    <p>Where are you?
-      <label for="the_address_1">Input Address #1</label>
-      <input type="text" name="user_address_1" id="the_address_1" placeholder="Address" value="<%=@address_1%>">
-    </p>
+      <%if @missing_address_1 and @missing_address_2%>
+      <div class="alert alert-danger"> Missing Address 1 and 2! </div>
+      <%elsif @missing_address_1%>
+      <div class="alert alert-danger"> Missing Address 1! </div>
+      <%elsif @missing_address_2%>
+      <div class="alert alert-danger"> Missing Address 2! </div>
+      <%end%>
+
+      <form class="form-horizontal" action="/your_meetpoint">
+        <div class="form-group">
+          <p>Where are you?
+            <label for="the_address_1">Input Address #1</label>
+            <input type="text" class="form-control" name="user_address_1" id="the_address_1" placeholder="Address" value="<%=@address_1%>">
+          </p>
+          <p>Where is your friend?
+            <label for="the_address_2">Input Address #2</label>
+            <input type="text" class="form-control" name="user_address_2" id="the_address_2" placeholder="Address" value="<%=@address_2%>">
+          </p>
+        </div>
+
+        <p><button>What's our MeetPoint?</button></p>
+      </form>
+    </div>
   </div>
-
-  <div>
-    <p>Where is your friend?
-      <label for="the_address_2">Input Address #2</label>
-      <input type="text" name="user_address_2" id="the_address_2" placeholder="Address" value="<%=@address_2%>">
-    </p>
-  </div>
-
-  <p><button>What's our MeetPoint?</button></p>
-</form>
+</div>
