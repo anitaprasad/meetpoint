@@ -1,17 +1,25 @@
 <h1>MeetPoint</h1>
 
+<%if @missing_address_1 and @missing_address_2%>
+<p> Missing Address 1 and 2! </p>
+<%elsif @missing_address_1%>
+<p> Missing Address 1! </p>
+<%elsif @missing_address_2%>
+<p> Missing Address 2! </p>
+<%end%>
+
 <form action="/your_meetpoint">
   <div>
     <p>Where are you?
       <label for="the_address_1">Input Address #1</label>
-      <input type="text" name="user_address_1" id="the_address_1" placeholder="Address">
+      <input type="text" name="user_address_1" id="the_address_1" placeholder="Address" value="<%=@address_1%>">
     </p>
   </div>
 
   <div>
     <p>Where is your friend?
       <label for="the_address_2">Input Address #2</label>
-      <input type="text" name="user_address_2" id="the_address_2" placeholder="Address">
+      <input type="text" name="user_address_2" id="the_address_2" placeholder="Address" value="<%=@address_2%>">
     </p>
   </div>
 

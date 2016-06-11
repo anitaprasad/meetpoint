@@ -61,21 +61,11 @@
             </tr>
             <% @yelp_biz.each do |biz| %>
             <tr>
-              <td>
-                <img src = '<%=biz.image_url %>'>
-              </td>
-              <td>
-                <a href = '<%=biz.url %>'><%=biz.name %></a>
-              </td>
-              <td>
-                <%=biz.rating %>
-              </td>
-              <td>
-                <em><%=biz.snippet_text %></em>
-              </td>
-              <td>
-                <a href = 'https://www.google.com/maps/dir//<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>/@<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>,17z'><%=biz.location.display_address %></a>
-              </td>
+              <td><img src = '<%=biz.image_url %>'></td>
+              <td><a href = '<%=biz.url %>'><%=biz.name %></a></td>
+              <td><%=biz.rating %></td>
+              <td><em><%=biz.snippet_text %></em></td>
+              <td><a href = 'https://www.google.com/maps/dir//<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>/@<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>,17z'><%=biz.location.display_address %></a></td>
             </tr>
 
             <% end %>
