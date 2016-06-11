@@ -7,21 +7,14 @@
     <div class="col-md-offset-1 col-md-10">
       <h1>Meet here!</h1>
       <center>
-        <!-- <iframe width="600" height="450" frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?q=<%=@mid_latitude%>,<%=@mid_longitude%>
-        &zoom=10
-        &key=AIzaSyAYmhfioWUGvP8eeIUFL_12feamgDCCt9E">
-      </iframe> -->
+        <head>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        </head>
+        <body>
+          <div id="map" style="width: 500px; height: 400px;"></div>
 
-
-      <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-      </head>
-      <body>
-        <div id="map" style="width: 500px; height: 400px;"></div>
-
-        <script type="text/javascript">
+          <script type="text/javascript">
           var locations = [
             ['Midpoint Area', <%=@mid_latitude%>,<%=@mid_longitude%>, 2],
             ['Address 1', <%=@latitude_1%>,<%=@longitude_1%>, 1],
@@ -51,44 +44,44 @@
               }
             })(marker, i));
           }
-        </script>
+          </script>
 
 
-    </center>
-    <h4>Check out these places in between <%= @address_1 %> and <%= @address_2 %>:  </h4>
+        </center>
+        <h4>Check out these places in between <%= @address_1 %> and <%= @address_2 %>:  </h4>
 
-    <p>
-      <table class="table">
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Yelp Rating</th>
-          <th>Top User Comment</th>
-          <th>Address</th>
-        </tr>
-        <% @yelp_biz.each do |biz| %>
-        <tr>
-          <td>
-            <img src = '<%=biz.image_url %>'>
-          </td>
-          <td>
-            <a href = '<%=biz.url %>'><%=biz.name %></a>
-          </td>
-          <td>
-            <%=biz.rating %>
-          </td>
-          <td>
-            <em><%=biz.snippet_text %></em>
-          </td>
-          <td>
-            <a href = 'https://www.google.com/maps/dir//<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>/@<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>,17z'><%=biz.location.display_address %></a>
-          </td>
-        </tr>
+        <p>
+          <table class="table">
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Yelp Rating</th>
+              <th>Top User Comment</th>
+              <th>Address</th>
+            </tr>
+            <% @yelp_biz.each do |biz| %>
+            <tr>
+              <td>
+                <img src = '<%=biz.image_url %>'>
+              </td>
+              <td>
+                <a href = '<%=biz.url %>'><%=biz.name %></a>
+              </td>
+              <td>
+                <%=biz.rating %>
+              </td>
+              <td>
+                <em><%=biz.snippet_text %></em>
+              </td>
+              <td>
+                <a href = 'https://www.google.com/maps/dir//<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>/@<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>,17z'><%=biz.location.display_address %></a>
+              </td>
+            </tr>
 
-        <% end %>
-      </table>
-    </p>
+            <% end %>
+          </table>
+        </p>
+      </div>
+    </div>
+    <div class="row"></div>
   </div>
-</div>
-<div class="row"></div>
-</div>
