@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class MeetpointController < ApplicationController
+
   def enter_addresses
     # Nothing to do here.
     render("enter_addresses.html.erb")

@@ -1,63 +1,94 @@
-<h1>Meet here:</h1>
-
-<p>Address 1<%= @address_1 %>:
-  Longitude 1 <%= @longitude_1 %>
-  Latitude 1 <%= @latitude_1 %>
+<p class="navbar-text navbar-right">
+  <a href="/">Enter different addresses</a>
 </p>
 
-<p>Address 2<%= @address_2 %>:
-  Longitude 2 <%= @longitude_2 %>
-  Latitude 2 <%= @latitude_2 %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <h1>Meet here!</h1>
+      <center>
+        <!-- <iframe width="600" height="450" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?q=<%=@mid_latitude%>,<%=@mid_longitude%>
+        &zoom=10
+        &key=AIzaSyAYmhfioWUGvP8eeIUFL_12feamgDCCt9E">
+      </iframe> -->
 
-<p>Here's the midpoint <%= @address_mid %>:
-  Mid Longitude <%= @mid_longitude %>
-  Mid Latitude <%= @mid_latitude %>
-  Yelp <%= @yelp_name %>
-</p>
-<p>
-  <% @yelp_biz.each do |biz| %>
-  <img src = '<%=biz.image_url %>'>
-  <a href = '<%=biz.url %>'><%=biz.name %></a>
-  <%=biz.rating %>
-  <%=biz.snippet_text %>
-  <%=biz.location.address %>
-</p>
-<% end %>
 
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple markers</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
+      <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+      </head>
+      <body>
+        <div id="map" style="width: 500px; height: 400px;"></div>
 
-      function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+        <script type="text/javascript">
+          var locations = [
+            ['Midpoint Area', <%=@mid_latitude%>,<%=@mid_longitude%>, 2],
+            ['Address 1', <%=@latitude_1%>,<%=@longitude_1%>, 1],
+            ['Address 2', <%=@latitude_2%>,<%=@longitude_2%>, 3],
+          ];
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
-        });
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: new google.maps.LatLng(<%=@mid_latitude%>,<%=@mid_longitude%>),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmhfioWUGvP8eeIUFL_12feamgDCCt9E&callback=initMap">
-    </script>
+          var infowindow = new google.maps.InfoWindow();
+
+          var marker, i;
+
+          for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+              map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+          }
+        </script>
+
+
+    </center>
+    <h4>Check out these places in between <%= @address_1 %> and <%= @address_2 %>:  </h4>
+
+    <p>
+      <table class="table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Yelp Rating</th>
+          <th>Top User Comment</th>
+          <th>Address</th>
+        </tr>
+        <% @yelp_biz.each do |biz| %>
+        <tr>
+          <td>
+            <img src = '<%=biz.image_url %>'>
+          </td>
+          <td>
+            <a href = '<%=biz.url %>'><%=biz.name %></a>
+          </td>
+          <td>
+            <%=biz.rating %>
+          </td>
+          <td>
+            <em><%=biz.snippet_text %></em>
+          </td>
+          <td>
+            <a href = 'https://www.google.com/maps/dir//<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>/@<%=biz.location.coordinate.latitude%>,<%=biz.location.coordinate.longitude%>,17z'><%=biz.location.display_address %></a>
+          </td>
+        </tr>
+
+        <% end %>
+      </table>
+    </p>
+  </div>
+</div>
+<div class="row"></div>
+</div>
