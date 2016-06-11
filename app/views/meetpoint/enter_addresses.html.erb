@@ -14,13 +14,17 @@
 
       <form class="form-horizontal" action="/your_meetpoint">
         <div class="form-group">
-          <p>Where are you?
-            <label for="the_address_1">Input Address #1</label>
+          <p>
+            <label for="the_address_1">Where are you?</label>
             <input type="text" class="form-control" name="user_address_1" id="the_address_1" placeholder="Address" value="<%=@address_1%>">
           </p>
-          <p>Where is your friend?
-            <label for="the_address_2">Input Address #2</label>
+          <p>
+            <label for="the_address_2">Where is your friend?</label>
             <input type="text" class="form-control" name="user_address_2" id="the_address_2" placeholder="Address" value="<%=@address_2%>">
+          </p>
+          <p>
+            <label for="category">What are you looking for?</label>
+            <input type="text" class="form-control" name="category" id="the_category" placeholder="Category (ex. food, drinks, coffee, etc.)" value="<%=@address_2%>">
           </p>
         </div>
 
